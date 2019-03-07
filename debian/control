@@ -1,0 +1,23 @@
+Source: vitalsd
+Section: python
+Maintainer: AIY Projects <support-aiyprojects@google.com>
+Build-Depends: debhelper,
+               dh-python,
+               python3-all-dev,
+               python3-setuptools
+Priority: optional
+Vcs-Git: https://aiyprojects.googlesource.com/vitalsd
+
+Package: vitalsd
+Section: misc
+Priority: optional
+Architecture: all
+Depends: ${python3:Depends},
+         ${misc:Depends},
+         python3-serial
+Description: A vital statistics monitor that outputs to serial consoles for embedded systems
+ vitalsd is a very simple tool that samples vital system statistics (CPU load,
+ free/total memory, temperatures, etc.) and outputs them periodically to a serial
+ port. It's designed to be used on embedded systems with physical serial ports
+ that can crash in unexpected ways that leave the system in a non-triageable
+ state.
