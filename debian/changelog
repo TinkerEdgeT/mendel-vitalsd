@@ -1,5 +1,5 @@
-vitalsd (0.0.1-1) UNRELEASED; urgency=low
+vitalsd (1-0) mendel-chef; urgency=low
 
   * Initial release
 
- -- June Tate-Gans <jtgans@google.org>  Thu, 27 Dec 2018 14:02:00 -0700
+ -- Coral <coral-support@google.com>  Tue, 19 Mar 2019 17:08:25 -0700
