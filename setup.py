@@ -13,7 +13,7 @@ setup(
     description='A vital statistics monitor that outputs to serial consoles for embedded systems',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://aiyprojects.googlesource.com/vitalsd.git',
+    url='https://coral.googlesource.com/vitalsd.git',
     author='Mendel Linux Software Team',
     author_email='coral-support@google.com',
     license='Apache 2',
