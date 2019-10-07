@@ -1,3 +1,9 @@
+vitalsd (2-1) mendel-day; urgency=medium
+
+  * Cut for day release
+
+ -- Coral <coral-support@google.com>  Mon, 07 Oct 2019 13:25:13 -0500
+
 vitalsd (1-1) mendel-chef; urgency=low
 
   * Lintian cleanups
