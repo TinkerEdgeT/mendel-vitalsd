@@ -15,12 +15,17 @@ limitations under the License.
 """
 
 
+import glob
+import os
+import time
+
+
 class Sampler(object):
     def sample(self):
         return 'unknown'
 
     def name(self):
-        return ['unknown']
+        return 'unknown'
 
     def __str__(self):
         result = [self.name()]
@@ -28,9 +33,46 @@ class Sampler(object):
         return '\t'.join(result)
 
 
-class MultiSampler(object):
-    def sample(self):
-        return ['unknown']
+class SysPathSampler(Sampler):
+    def __init__(self, sys_dir):
+        print(f'Monitoring path {sys_dir}')
+        self.dir = sys_dir
 
     def name(self):
-        return [['unknown']]
+        return self.dir
+
+    def sample(self):
+        samples = []
+        for node in os.scandir(self.dir):
+            if node.is_dir():
+                continue
+            try:
+                with open(node.path, 'r') as fp:
+                    samples.append('='.join([node.name, fp.readline()[0:-1]]))
+            except BaseException as e:
+                samples.append('='.join([node.name, str(e)]))
+        return ['|'.join(samples)]
+
+
+def MakeSamplersFromSysPath(sys_dir_path):
+    return [SysPathSampler(dir) for dir in glob.glob(sys_dir_path)]
+
+
+class IterationSampler(Sampler):
+    def __init__(self):
+        self.iteration = 0
+
+    def name(self):
+        return 'iteration'
+
+    def sample(self):
+        self.iteration = self.iteration + 1
+        return [str(self.iteration)]
+
+
+class TimeSampler(Sampler):
+    def name(self):
+        return 'time'
+
+    def sample(self):
+        return [str(time.time())]

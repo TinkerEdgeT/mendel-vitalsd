@@ -22,20 +22,27 @@ limitations under the License.
 """
 
 import sys
+import argparse
 
 from vitalsd.monitor import Monitor
 
-VITALSD_USAGE_HELP = '''
-Usage: vitalsd [<options>]
-
-Where options may be:
-
-'''
-
 
 def main():
+    parser = argparse.ArgumentParser(
+        description='output vital system statistics to a serial console')
+    parser.add_argument('--delay', type=int, default=10,
+                        help='delay in seconds to wait before outputting another'
+                        'set of vitals.')
+    parser.add_argument('--speed', type=int, default=115200,
+                        help='the bit rate to output at')
+    parser.add_argument('--device', type=str, default=None,
+                        help='the serial device to output to')
+    args = parser.parse_args()
+
     try:
-        monitor = Monitor()
+        monitor = Monitor(delay_secs=args.delay,
+                          serial_device=args.device,
+                          speed=args.speed)
         monitor.run()
     except KeyboardInterrupt:
         print('Terminating.')

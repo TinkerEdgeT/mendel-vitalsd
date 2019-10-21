@@ -26,7 +26,7 @@ class UptimeSampler(sampler.Sampler):
         with open('/proc/uptime', 'r') as fp:
             uptime = fp.readline()
             uptime = uptime.split(' ')
-            return uptime
+            return uptime[0:-1]
 
 
 class CpuLoadSampler(sampler.Sampler):
@@ -37,4 +37,4 @@ class CpuLoadSampler(sampler.Sampler):
         with open('/proc/loadavg', 'r') as fp:
             loadavg = fp.readline()
             loadavg = loadavg.split(' ')
-            return loadavg
+            return loadavg[0:-1]

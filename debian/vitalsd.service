@@ -1,0 +1,8 @@
+[Unit]
+Description=vitalsd system vitality nurse
+
+[Service]
+Exec=/usr/bin/vitalsd /dev/tty/ttyGS0
+
+[Install]
+WantedBy=basic.target
